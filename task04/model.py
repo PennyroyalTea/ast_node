@@ -1,77 +1,66 @@
 #!/usr/bin/env python3
 
+import abc
+
+
+class ASTNode(metaclass=abc.ABCMeta):
+    @abc.abstractmethod
+    def evaluate(self, scope):
+        """Evaluate a node and return its result"""
+
+
 class Scope:
-    def __init__(self, parent = None):
+    def __init__(self, parent=None):
         pass
 
 
-class Number:
+class Number(ASTNode):
     def __init__(self, value):
         pass
-    def evaluate(self, scope):
-        pass
 
 
-class Function:
+class Function(ASTNode):
     def __init__(self, args, body):
         pass
-    def evaluate(self, scope):
-        pass
 
 
-class FunctionDefinition:
+class FunctionDefinition(ASTNode):
     def __init__(self, name, function):
         pass
-    def evaluate(self, scope):
+
+
+class Conditional(ASTNode):
+    def __init__(self, condition, if_true, if_false=None):
         pass
 
 
-class Conditional:
-    def __init__(self, condition, if_true, if_false = None):
-        pass
-    def evaluate(self, scope)
-        pass
-
-
-class Print:
+class Print(ASTNode):
     def __init__(self, expr):
         pass
-    def evaluate(self, scope):
-        pass
 
 
-class Read:
+class Read(ASTNode):
     def __init__(self, name):
         pass
-    def evaluate(self, scope):
-        pass
 
 
-class FunctionCall:
+class FunctionCall(ASTNode):
     def __init__(self, fun_expr, args):
         pass
-    def evaluate(self, scope):
-        pass
 
 
-class Reference:
+class Reference(ASTNode):
     def __init__(self, name):
         pass
-    def evaluate(self, scope):
-        pass
 
 
-class BinaryOperation:
+class BinaryOperation(ASTNode):
     def __init__(self, lhs, op, rhs):
         pass
-    def evaluate(self, scope):
-        pass
 
 
-class UnaryOperation:
+class UnaryOperation(ASTNode):
     def __init__(self, op, expr):
-        pass
-    def evaluate(self, scope):
         pass
 
 
