@@ -31,35 +31,39 @@
 
 ## Подробнее
 
-Репозиторий содержит небольшой скрипт, который вычисляет среднюю длину максимальной последовательности орлов(единиц) в серии бросков монеты.
-Вам необходимо отрефакторить его так что бы он принял следующий вид:
+Репозиторий содержит небольшой скрипт, который вычисляет среднюю длину максимальной последовательности орлов (единиц) в серии бросков монеты.
+Вам необходимо отрефакторить его так, чтобы он принял следующий вид:
 
 ```python
-#!usr/bin/env python3
-
+#!/usr/bin/env python3
 import random
+
+
+def get_max_run(flips):
+    cur_run = 0
+    max_run = 0
+    for flip in flips:
+        if flip:
+            cur_run += 1
+        else:
+            cur_run = 0
+        max_run = max(max_run, cur_run)
+    return max_run
+
 
 ITERS = 1000
 FLIPS = 100
+
 
 def main():
     random.seed(123456)
     s = 0
     total = 0
     for _ in range(ITERS):
+        s += get_max_run(random.choice([0, 1]) for _ in range(FLIPS))
         total += 1
-        cur_max = 0
-        last_ones = 0
-        for _ in range(FLIPS):
-            cur_val = random.choice([0, 1])
-            if cur_val:
-                last_ones += 1
-            else:
-                last_ones = 0
-            cur_max = max(cur_max, last_ones)
-            s += cur_max
     print(s, total, s / total)
-    
+
 
 if __name__ == "__main__":
     main()
