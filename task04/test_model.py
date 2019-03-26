@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import pytest
+import model
 
 
 def test_nothing():

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import pytest
+import find_duplicates
 
 
 def test_nothing():
