@@ -352,11 +352,11 @@ foo(1, 2, 3);
 Функция `fold_constants` должна возвращать _новое_ синтаксическое дерево,
 построенное на основе параметра `program` так, чтобы в нем не осталось операций вида:
 
-* `BinaryOperation(Number, AnyBinOp, Number)`, где `Number` — какой-либо объект класса `Number`, а `AnyBinOp` — любая бинарная операция из списка допустимых бинарных операций;
-* `UnaryOperation(AnyUnOp, Number)`, где `AnyUnOp` — любая операция из списка допустимых унарных операций;
-* `BinaryOperation(Number(0), '*', Reference)`, где `Number(0)` — объект класса `Number`, который содержит значение `0`, а `Reference` - любой объект класса `Reference`;
-* `BinaryOperation(Reference, '*', Number(0))`;
-* `BinaryOperation(Reference(name), ‘-’, Reference(name))`, где `Reference(name)` - объект класса Reference, содержащий имя `name`.
+* `BinaryOperation(Number, AnyBinOp, Number)`, где `Number` — какой-либо объект класса `Number`, а `AnyBinOp` — любая бинарная операция из списка допустимых бинарных операций
+* `UnaryOperation(AnyUnOp, Number)`, где `AnyUnOp` — любая операция из списка допустимых унарных операций
+* `BinaryOperation(Number(0), '*', Reference)`, где `Number(0)` — объект класса `Number`, который содержит значение `0`, а `Reference` — любой объект класса `Reference`
+* `BinaryOperation(Reference, '*', Number(0))`
+* `BinaryOperation(Reference(name), ‘-’, Reference(name))`, где `Reference(name)` - объект класса Reference, содержащий имя `name`
 
 но при этом семантически "эквивалентное" исходному дереву `program`.
 
@@ -392,6 +392,9 @@ pretty_print(fold_constants(
 
 1. Для каждой из пяти операции из условия, которую требуется сократить, имеется один отдельный тест, проверяющий корректность.
 2. Для большого end-to-end примера из условия имеется тест, проверяющий корректность.
+
+Обратите внимание, что просто вызвать `evaluate()` для проверки корректности недостаточно: требуется
+также проверить внутреннюю структуру полученной программы.
 
 ## Требования к корректности решения
 Если присланные файлы не соответствуют хотя бы одному из условий ниже, решение считается некорректным и оценивается в 0 баллов:
