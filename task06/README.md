@@ -58,11 +58,34 @@
 ## Пример
 Следующий код:
 ```
-TODO
+pretty_print(FunctionDefinition('main', Function(['arg1'], [
+    Read('x'),
+    Print(Reference('x')),
+    Conditional(
+        BinaryOperation(Number(2), '==', Number(3)),
+        [
+            Conditional(Number(1), [], [])
+        ],
+        [
+            FunctionCall(Reference('exit'), [
+                UnaryOperation('-', Reference('arg1'))
+            ])
+        ],
+    ),
+])))
 ```
 может вывести такой текст:
 ```
-TODO
+def main(arg1) {
+    read x;
+    print x;
+    if ((2) == (3)) {
+        if (1) {
+        }
+    } else {
+        exit(-(arg1));
+    }
+}
 ```
 
 ## Подробнее
