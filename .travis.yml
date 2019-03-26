@@ -1,0 +1,14 @@
+# Not 'language: python' because there will be projects in multiple languages.
+language: minimal
+dist: xenial
+
+cache: pip
+before_install:
+# Python 3.5 is the default python3 on Ubuntu Xenial
+- virtualenv --python=python3.5 .py35
+- source .py35/bin/activate
+- python --version
+install:
+- pip install -r requirements.txt -r requirements-dev.txt
+script:
+- pytest

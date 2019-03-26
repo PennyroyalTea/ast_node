@@ -1,0 +1,4 @@
+numpy>=1.13.3
+pandas>=0.24.1
+opencv-python>=4.0.0.21
+requests>=2.18.4
