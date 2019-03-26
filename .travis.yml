@@ -12,4 +12,6 @@ install:
 - pip install -r requirements.txt -r requirements-dev.txt
 script:
 - find task?? -iname '*.py' | xargs pycodestyle --show-source
-- pytest
+- pytest task02
+- pytest task03
+- pytest task04
