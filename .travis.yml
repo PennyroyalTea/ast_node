@@ -15,3 +15,4 @@ script:
 - pytest task02
 - pytest task03
 - pytest task04
+- pytest task06
