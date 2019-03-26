@@ -58,7 +58,7 @@ class FunctionDefinition(ASTNode):
     Function под заданным именем, а возвращать evaluate должен саму функцию.
     """
     def __init__(self, name, function):
-        raise NotImplementedError
+        pass
 
 
 class Conditional(ASTNode):
@@ -79,7 +79,7 @@ class Conditional(ASTNode):
     остается на ваше усмотрение.
     """
     def __init__(self, condition, if_true, if_false=None):
-        raise NotImplementedError
+        pass
 
 
 class Print(ASTNode):
@@ -97,7 +97,7 @@ class Print(ASTNode):
     выведен.
     """
     def __init__(self, expr):
-        raise NotImplementedError
+        pass
 
 
 class Read(ASTNode):
@@ -114,7 +114,7 @@ class Read(ASTNode):
     строк и лишних символов не будет).
     """
     def __init__(self, name):
-        raise NotImplementedError
+        pass
 
 
 class FunctionCall(ASTNode):
@@ -142,7 +142,7 @@ class FunctionCall(ASTNode):
     неопределён, то возвращаемое значение остаётся на ваше усмотрение.
     """
     def __init__(self, fun_expr, args):
-        raise NotImplementedError
+        pass
 
 
 class Reference(ASTNode):
@@ -152,7 +152,7 @@ class Reference(ASTNode):
     (см. подробнее про класс Scope).
     """
     def __init__(self, name):
-        raise NotImplementedError
+        pass
 
 
 class BinaryOperation(ASTNode):
@@ -176,7 +176,7 @@ class BinaryOperation(ASTNode):
     т.е. не может получиться так, что вам придется сравнивать две функции.
     """
     def __init__(self, lhs, op, rhs):
-        raise NotImplementedError
+        pass
 
 
 class UnaryOperation(ASTNode):
@@ -191,4 +191,4 @@ class UnaryOperation(ASTNode):
     остальные за True.
     """
     def __init__(self, op, expr):
-        raise NotImplementedError
+        pass
