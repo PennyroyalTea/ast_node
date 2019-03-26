@@ -32,6 +32,9 @@ class Number(ASTNode):
     def __init__(self, value):
         pass
 
+    def evaluate(self, scope):
+        raise NotImplementedError
+
 
 class Function(ASTNode):
     """
@@ -47,6 +50,9 @@ class Function(ASTNode):
     def __init__(self, args, body):
         pass
 
+    def evaluate(self, scope):
+        raise NotImplementedError
+
 
 class FunctionDefinition(ASTNode):
     """
@@ -59,6 +65,9 @@ class FunctionDefinition(ASTNode):
     """
     def __init__(self, name, function):
         pass
+
+    def evaluate(self, scope):
+        raise NotImplementedError
 
 
 class Conditional(ASTNode):
@@ -81,6 +90,9 @@ class Conditional(ASTNode):
     def __init__(self, condition, if_true, if_false=None):
         pass
 
+    def evaluate(self, scope):
+        raise NotImplementedError
+
 
 class Print(ASTNode):
     """
@@ -99,6 +111,9 @@ class Print(ASTNode):
     def __init__(self, expr):
         pass
 
+    def evaluate(self, scope):
+        raise NotImplementedError
+
 
 class Read(ASTNode):
     """
@@ -115,6 +130,9 @@ class Read(ASTNode):
     """
     def __init__(self, name):
         pass
+
+    def evaluate(self, scope):
+        raise NotImplementedError
 
 
 class FunctionCall(ASTNode):
@@ -144,6 +162,9 @@ class FunctionCall(ASTNode):
     def __init__(self, fun_expr, args):
         pass
 
+    def evaluate(self, scope):
+        raise NotImplementedError
+
 
 class Reference(ASTNode):
     """
@@ -153,6 +174,9 @@ class Reference(ASTNode):
     """
     def __init__(self, name):
         pass
+
+    def evaluate(self, scope):
+        raise NotImplementedError
 
 
 class BinaryOperation(ASTNode):
@@ -178,6 +202,9 @@ class BinaryOperation(ASTNode):
     def __init__(self, lhs, op, rhs):
         pass
 
+    def evaluate(self, scope):
+        raise NotImplementedError
+
 
 class UnaryOperation(ASTNode):
     """
@@ -192,3 +219,6 @@ class UnaryOperation(ASTNode):
     """
     def __init__(self, op, expr):
         pass
+
+    def evaluate(self, scope):
+        raise NotImplementedError
