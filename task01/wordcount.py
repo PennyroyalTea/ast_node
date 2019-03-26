@@ -33,6 +33,7 @@ print_words() and print_top().
 
 import sys
 
+
 def read_words(filename):
     words = []
     with open(filename, "r") as f:
@@ -49,6 +50,8 @@ def read_words(filename):
 
 # This basic command line argument parsing code is provided and
 # calls the print_words() and print_top() functions which you must define.
+
+
 def main():
     if len(sys.argv) != 3:
         print('usage: ./wordcount.py {--count | --topcount} file')
@@ -63,6 +66,7 @@ def main():
     else:
         print('unknown option: ' + option)
         sys.exit(1)
+
 
 if __name__ == '__main__':
     main()
