@@ -144,7 +144,7 @@ pretty_print(Conditional(Number(42), [], []))
 должен вывести такой текст:
 ```
 if (42) {
-};
+}
 ```
 
 ### `FunctionDefinition`
@@ -174,7 +174,7 @@ pretty_print(FunctionDefinition("foo", Function([], [])))
 должен вывести следующий текст:
 ```
 def foo() {
-};
+}
 ```
 
 ### `Print`
