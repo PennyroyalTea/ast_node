@@ -151,10 +151,10 @@ if (42) {
 Для объекта класса `FunctionDefinition` необходимо вывести текст следующего вида:
 ```
 def <name>(arg0, arg1, …, argk) {
-    <statement 0>;
-    <statement 1>;
+    <statement 0>
+    <statement 1>
     …
-    <statement n>;
+    <statement n>
 }
 ```
 где:
