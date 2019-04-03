@@ -259,8 +259,8 @@ x;
 Например, следующий код:
 
 ```
-add = BinaryOperation(Number(2), `+`, Number(3))
-mul = BinaryOperation(Number(0), `*`, add)
+add = BinaryOperation(Number(2), '+', Number(3))
+mul = BinaryOperation(Number(1), '*', add)
 pretty_print(mul)
 ```
 
@@ -286,7 +286,7 @@ pretty_print(mul)
 Например, следующий код:
 
 ```
-pretty_print(Operation('-', Number(42)))`
+pretty_print(UnaryOperation('-', Number(42)))`
 ```
 может вывести следующий текст:
 ```
@@ -324,7 +324,7 @@ foo(1, 2, 3);
 Требуется при помощи pytest в отдельном файле `test_printer.py`:
 
 1. Для каждого примера из условия проверить корректность вывода, используя напрямую `PrettyPrinter`.
-2. Для большого end-to-end примера из условия проверить корректность вывода, используя `print_pretty`.
+2. Для большого end-to-end примера из условия проверить корректность вывода, используя `pretty_print`.
 
 ## Требования к корректности решения
 Если присланные файлы не соответствуют хотя бы одному из условий ниже, решение считается некорректным и оценивается в 0 баллов:
