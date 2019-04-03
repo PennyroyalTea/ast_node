@@ -13,6 +13,7 @@ install:
 - pip install -r requirements.txt -r requirements-dev.txt
 script:
 - find task?? -iname '*.py' | xargs pycodestyle --show-source
+- find task?? -iname '*.py' -not -iname 'test_*.py' | xargs -n 1 mypy
 - pytest task02
 - pytest task03
 - pytest task04
