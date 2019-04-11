@@ -27,6 +27,52 @@ class ASTNode(metaclass=abc.ABCMeta):
         в заданной области видимости и возвращает результат вычисления.
         """
 
+    @abc.abstractmethod
+    def accept(self, visitor):
+        pass
+
+
+class ASTNodeVisitor(metaclass=abc.ABCMeta):
+    @abc.abstractmethod
+    def visit_number(self, node):
+        pass
+
+    @abc.abstractmethod
+    def visit_function(self, node):
+        pass
+
+    @abc.abstractmethod
+    def visit_function_definition(self, node):
+        pass
+
+    @abc.abstractmethod
+    def visit_conditional(self, node):
+        pass
+
+    @abc.abstractmethod
+    def visit_print(self, node):
+        pass
+
+    @abc.abstractmethod
+    def visit_read(self, node):
+        pass
+
+    @abc.abstractmethod
+    def visit_function_call(self, node):
+        pass
+
+    @abc.abstractmethod
+    def visit_reference(self, node):
+        pass
+
+    @abc.abstractmethod
+    def visit_binary_operation(self, node):
+        pass
+
+    @abc.abstractmethod
+    def visit_unary_operation(self, node):
+        pass
+
 
 class Number(ASTNode):
     """
