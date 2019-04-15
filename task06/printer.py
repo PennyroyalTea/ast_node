@@ -1,6 +1,5 @@
 from model import ASTNodeVisitor
 
-
 def pretty_print_list(cmd_list):
     printer = PrettyPrinter()
     for command in cmd_list:
@@ -91,13 +90,31 @@ class PrettyPrinter(ASTNodeVisitor):
         self.result += node.name
 
     def visit_binary_operation(self, node):
-        self.result += '('
+        left, right = node.need_braces()
+
+        if left:
+            self.result += '('
         node.lhs.accept(self)
-        self.result += ') {} ('.format(node.op)
+        if left:
+            self.result += ')'
+
+        self.result += ' {} '.format(node.op)
+
+        if right:
+            self.result += '('
         node.rhs.accept(self)
-        self.result += ')'
+        if right:
+            self.result += ')'
 
     def visit_unary_operation(self, node):
         self.result += node.op
+
+        braces = node.need_braces()
+
+        if braces:
+            self.result += '('
+
         node.expr.accept(self)
 
+        if braces:
+            self.result += ')'
