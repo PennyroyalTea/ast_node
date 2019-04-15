@@ -21,6 +21,10 @@ class Scope:
 
 class ASTNode(metaclass=abc.ABCMeta):
     @abc.abstractmethod
+    def __eq__(self, other):
+        pass
+
+    @abc.abstractmethod
     def evaluate(self, scope):
         """
         Запускает вычисление текущего узла синтаксического дерева
@@ -118,6 +122,10 @@ class Function(ASTNode):
         self.args = args
         self.body = body
 
+    def __eq__(self, other):
+        return isinstance(self, type(other)) and \
+               self.args == other.args and self.body == other.body
+
     def evaluate(self, scope):
         return self
 
@@ -137,6 +145,10 @@ class FunctionDefinition(ASTNode):
     def __init__(self, name, function):
         self.name = name
         self.function = function
+
+    def __eq__(self, other):
+        return isinstance(self, type(other)) and \
+               self.name == other.name and self.function == other.function
 
     def evaluate(self, scope):
         scope[self.name] = self.function
@@ -167,6 +179,12 @@ class Conditional(ASTNode):
         self.condition = condition
         self.if_true = if_true
         self.if_false = if_false
+
+    def __eq__(self, other):
+        return isinstance(self, type(other)) and \
+               self.condition == other.condition and \
+               self.if_true == other.if_true and \
+               self.if_false == other.if_false
 
     def evaluate(self, scope):
         condition_res = self.condition.evaluate(scope)
@@ -200,6 +218,9 @@ class Print(ASTNode):
     def __init__(self, expr):
         self.expr = expr
 
+    def __eq__(self, other):
+        return isinstance(self, type(other)) and self.expr == other.expr
+
     def evaluate(self, scope):
         res = self.expr.evaluate(scope)
         print(res.value)
@@ -224,6 +245,9 @@ class Read(ASTNode):
     """
     def __init__(self, name):
         self.name = name
+
+    def __eq__(self, other):
+        return isinstance(self, type(other)) and self.name == other.name
 
     def evaluate(self, scope):
         num = Number(int(input()))
@@ -262,6 +286,10 @@ class FunctionCall(ASTNode):
         self.fun_expr = fun_expr
         self.args = args
 
+    def __eq__(self, other):
+        return isinstance(self, type(other)) and \
+               self.fun_expr == other.fun_expr and self.args == other.args
+
     def evaluate(self, scope):
         function = self.fun_expr.evaluate(scope)
         local_scope = Scope(scope)
@@ -287,6 +315,9 @@ class Reference(ASTNode):
     """
     def __init__(self, name):
         self.name = name
+
+    def __eq__(self, other):
+        return isinstance(self, type(other)) and self.name == other.name
 
     def evaluate(self, scope):
         return scope[self.name]
@@ -319,6 +350,11 @@ class BinaryOperation(ASTNode):
         self.lhs = lhs
         self.op = op
         self.rhs = rhs
+
+    def __eq__(self, other):
+        return isinstance(self, type(other)) and \
+               self.lhs == other.lhs and self.rhs == other.rhs and\
+               self.op == other.op
 
     def evaluate(self, scope):
         left = self.lhs.evaluate(scope)
@@ -385,6 +421,10 @@ class UnaryOperation(ASTNode):
     def __init__(self, op, expr):
         self.op = op
         self.expr = expr
+
+    def __eq__(self, other):
+        return isinstance(self, type(other)) and \
+               self.op == other.op and self.expr == other.expr
 
     def evaluate(self, scope):
         res = self.expr.evaluate(scope)
