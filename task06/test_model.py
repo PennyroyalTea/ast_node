@@ -2,6 +2,57 @@
 import pytest
 from model import *
 from printer import *
+from folder import *
+
+
+def test_folder_binary_op_with_constants():
+    cmd = BinaryOperation(Number(566), '>=', Number(239))
+    assert fold_constants(cmd) == Number(1)
+
+
+def test_folder_unary_constant():
+    cmd = UnaryOperation('-', Number(12))
+    assert fold_constants(cmd) == Number(-12)
+
+
+def test_folder_binary_zero_left():
+    cmd = BinaryOperation(Number(0), '*', Reference('HEY'))
+    assert fold_constants(cmd) == Number(0)
+
+
+def test_folder_binary_zero_right():
+    cmd = BinaryOperation(Reference('x'), '*', Number(0))
+    assert fold_constants(cmd) == Number(0)
+
+
+def test_folder_binary_name_minus_name():
+    cmd = BinaryOperation(Reference('bbb'), '-', Reference('bbb'))
+    assert fold_constants(cmd) == Number(0)
+
+
+def test_folder_and_printer_end_to_end(capsys):
+    pretty_print(fold_constants(
+        BinaryOperation(
+            Number(10),
+            '-',
+            UnaryOperation(
+                '-',
+                BinaryOperation(
+                    Number(3),
+                    '+',
+                    BinaryOperation(
+                        Reference('x'),
+                        '-',
+                        Reference('x')
+                    )
+                )
+            )
+        )
+    ))
+
+    captured = capsys.readouterr()
+
+    assert captured.out == '13;\n'
 
 
 def test_printer_end_to_end(capsys):
