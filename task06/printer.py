@@ -1,5 +1,6 @@
 from model import ASTNodeVisitor
 
+
 def pretty_print_list(cmd_list):
     printer = PrettyPrinter()
     for command in cmd_list:
