@@ -82,7 +82,7 @@ class PrettyPrinter(ASTNodeVisitor):
         for arg in node.args:
             if not is_first:
                 self.result += ', '
-            is_first = True
+            is_first = False
             arg.accept(self)
 
         self.result += ')'
