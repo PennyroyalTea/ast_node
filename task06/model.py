@@ -233,6 +233,7 @@ class Read(ASTNode):
     def accept(self, visitor):
         visitor.visit_read(self)
 
+
 class FunctionCall(ASTNode):
     """
     Представляет вызов функции в программе.
