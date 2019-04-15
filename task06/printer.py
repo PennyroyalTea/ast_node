@@ -3,15 +3,18 @@ from model import ASTNodeVisitor
 
 def pretty_print_list(cmd_list):
     printer = PrettyPrinter()
+    first = True
     for command in cmd_list:
         command.accept(printer)
-    print(printer)
+        printer.newline()
+    print(printer, end='')
 
 
 def pretty_print(command):
     printer = PrettyPrinter()
     command.accept(printer)
-    print(printer)
+    printer.newline()
+    print(printer, end='')
 
 
 class PrettyPrinter(ASTNodeVisitor):
