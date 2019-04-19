@@ -53,3 +53,25 @@ def test_folder_end_to_end():
     )
 
     assert folded == Number(13)
+
+
+def test_folder_conditional(capsys):
+    cmd = Conditional(
+        BinaryOperation(
+            Reference('x'),
+            '-',
+            Reference('x')
+        ),
+        [
+            Print(
+                UnaryOperation(
+                    '!',
+                    Number(239)
+                )
+            )
+        ]
+    )
+    fold_constants(cmd).evaluate(Scope())
+
+    captured = capsys.readouterr()
+    assert captured.out == ''
