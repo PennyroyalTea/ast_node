@@ -7,38 +7,38 @@ def pretty_print_list(cmd_list):
     for command in cmd_list:
         command.accept(printer)
         printer.newline()
-    print(printer, end='')
+    print(printer.get_string(), end='')
 
 
 def pretty_print(command):
     printer = PrettyPrinter()
     command.accept(printer)
     printer.newline()
-    print(printer, end='')
+    print(printer.get_string(), end='')
 
 
 class PrettyPrinter(ASTNodeVisitor):
     def __init__(self):
         self.result = ''
-        self.indent = 0
+        self.indentation_level = 0
 
-    def __str__(self):
+    def get_string(self):
         return self.result
 
     def newline(self):
         if not self.result.endswith(('{', '}')):
             self.result += ';'
-        self.result += '\n' + '\t' * self.indent
+        self.result += '\n' + '\t' * self.indentation_level
 
     def print_block(self, block):
         self.result += '{'
-        self.indent += 1
+        self.indentation_level += 1
 
         for command in block:
             self.newline()
             command.accept(self)
 
-        self.indent -= 1
+        self.indentation_level -= 1
         self.newline()
         self.result += '}'
 
