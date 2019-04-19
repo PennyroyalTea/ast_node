@@ -371,21 +371,21 @@ class BinaryOperation(ASTNode):
         elif self.op == '%':
             return Number(left.value % right.value)
         elif self.op == '==':
-            return Number(int(left.value == right.value))
+            return Number(left.value == right.value)
         elif self.op == '!=':
-            return Number(int(left.value != right.value))
+            return Number(left.value != right.value)
         elif self.op == '<':
-            return Number(int(left.value < right.value))
+            return Number(left.value < right.value)
         elif self.op == '>':
-            return Number(int(left.value > right.value))
+            return Number(left.value > right.value)
         elif self.op == '<=':
-            return Number(int(left.value <= right.value))
+            return Number(left.value <= right.value)
         elif self.op == '>=':
-            return Number(int(left.value >= right.value))
+            return Number(left.value >= right.value)
         elif self.op == '&&':
-            return Number(int(bool(left.value) and bool(right.value)))
+            return Number(left.value and right.value)
         elif self.op == '||':
-            return Number(int(bool(left.value) or bool(right.value)))
+            return Number(left.value or right.value)
         else:
             raise NotImplementedError
 
