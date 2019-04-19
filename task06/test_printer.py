@@ -124,3 +124,16 @@ def test_printer_function_call(capsys):
     estimated = 'foo(1, 2, 3);\n'
 
     assert captured.out == estimated and not captured.err
+
+
+def test_printer_empty_block(capsys):
+    pretty_print(
+        Conditional(
+            Number(1),
+            []
+        )
+    )
+    captured = capsys.readouterr()
+    estimated = 'if (1) {\n}\n'
+
+    assert captured.out == estimated and not captured.err
