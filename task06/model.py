@@ -191,7 +191,7 @@ class Conditional(ASTNode):
 
         branch = self.if_false if condition_res.value == 0 else self.if_true
 
-        return_value = None
+        return_value = Number(0)
         for expr in (branch or []):
             return_value = expr.evaluate(scope)
 
