@@ -34,7 +34,7 @@ class PrettyPrinter(ASTNodeVisitor):
         self.result += '{'
         self.indentation_level += 1
 
-        for command in block:
+        for command in block or []:
             self.newline()
             command.accept(self)
 
