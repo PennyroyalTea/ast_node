@@ -62,5 +62,6 @@ class ConstantFolder(ASTNodeVisitor):
 
     def visit_unary_operation(self, node):
         expr = node.expr.accept(self)
-        res = UnaryOperation(node.op, expr).evaluate(Scope())
-        return res
+        if isinstance(expr, Number):
+            return UnaryOperation(node.op, expr).evaluate(Scope())
+        return UnaryOperation(node.op, expr)

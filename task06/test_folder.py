@@ -7,6 +7,11 @@ if __name__ == "__main__":
     pytest.main()
 
 
+def test_folder_unary_reference():
+    cmd = UnaryOperation('-', Reference('x'))
+    assert fold_constants(cmd) == UnaryOperation('-', Reference('x'))
+
+
 def test_folder_binary_op_with_constants():
     cmd = BinaryOperation(Number(566), '>=', Number(239))
     assert fold_constants(cmd) == Number(1)
