@@ -389,20 +389,6 @@ class BinaryOperation(ASTNode):
         else:
             raise NotImplementedError
 
-    def need_braces(self):
-        left = True
-        right = True
-
-        if isinstance(self.lhs, (Number, Reference)):
-            left = False
-        if isinstance(self.rhs, (Number, Reference)):
-            right = False
-
-        if self.op in ['+', '-']:
-            left = right = False
-
-        return left, right
-
     def accept(self, visitor):
         return visitor.visit_binary_operation(self)
 
@@ -434,15 +420,6 @@ class UnaryOperation(ASTNode):
             return Number(int(not bool(res.value)))
         else:
             raise NotImplementedError
-
-    def need_braces(self):
-        if isinstance(self.expr, Reference):
-            return False
-        if isinstance(self.expr, Number):
-            return False
-        if isinstance(self.expr, FunctionCall):
-            return False
-        return True
 
     def accept(self, visitor):
         return visitor.visit_unary_operation(self)

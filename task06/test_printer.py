@@ -30,11 +30,11 @@ def test_printer_end_to_end(capsys):
         "def main(arg1) {\n\t"
         "read x;\n\t"
         "print x;\n\t"
-        "if (2 == 3) {\n\t\t"
+        "if ((2) == (3)) {\n\t\t"
         "if (1) {\n\t\t"
         "}\n\t"
         "} else {\n\t\t"
-        "exit(-arg1);\n\t"
+        "exit(-(arg1));\n\t"
         "}\n"
         "}\n"
     )
@@ -102,7 +102,18 @@ def test_printer_binary_op(capsys):
     pretty_print(mul)
 
     captured = capsys.readouterr()
-    estimated = '1 * (2 + 3);\n'
+    estimated = '(1) * ((2) + (3));\n'
+
+    assert captured.out == estimated and not captured.err
+
+
+def test_printer_binary_braces(capsys):
+    sub = BinaryOperation(Number(3), '-', Number(2))
+    add = BinaryOperation(sub, '+', Number(1))
+    pretty_print(add)
+
+    captured = capsys.readouterr()
+    estimated = '((3) - (2)) + (1);\n'
 
     assert captured.out == estimated and not captured.err
 
@@ -111,7 +122,7 @@ def test_printer_unary_op(capsys):
     pretty_print(UnaryOperation('-', Number(42)))
 
     captured = capsys.readouterr()
-    estimated = '-42;\n'
+    estimated = '-(42);\n'
 
     assert captured.out == estimated and not captured.err
 

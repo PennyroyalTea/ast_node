@@ -91,31 +91,19 @@ class PrettyPrinter(ASTNodeVisitor):
         self.result += node.name
 
     def visit_binary_operation(self, node):
-        left, right = node.need_braces()
-
-        if left:
-            self.result += '('
+        self.result += '('
         node.lhs.accept(self)
-        if left:
-            self.result += ')'
+        self.result += ')'
 
         self.result += ' {} '.format(node.op)
 
-        if right:
-            self.result += '('
+        self.result += '('
         node.rhs.accept(self)
-        if right:
-            self.result += ')'
+        self.result += ')'
 
     def visit_unary_operation(self, node):
         self.result += node.op
 
-        braces = node.need_braces()
-
-        if braces:
-            self.result += '('
-
+        self.result += '('
         node.expr.accept(self)
-
-        if braces:
-            self.result += ')'
+        self.result += ')'
