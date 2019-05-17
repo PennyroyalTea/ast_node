@@ -48,10 +48,12 @@ class ConstantFolder(ASTNodeVisitor):
                 lhs.name == rhs.name and op == '-':
             return Number(0)
 
-        if isinstance(lhs, Number) and op == '*' and lhs.value == 0:
+        if isinstance(lhs, Number) and op == '*' and lhs.value == 0 and \
+                isinstance(rhs, Reference):
             return Number(0)
 
-        if isinstance(rhs, Number) and op == '*' and rhs.value == 0:
+        if isinstance(rhs, Number) and op == '*' and rhs.value == 0 and \
+                isinstance(lhs, Reference):
             return Number(0)
 
         if isinstance(lhs, Number) and isinstance(rhs, Number):
